@@ -1,5 +1,5 @@
 .top-page
-  %header.top-side
+  %header.top-left
     .header-nav
       %ul.header-nav-lists
         %li.header-nav-list
@@ -30,5 +30,22 @@
           = link_to  "", class: 'information-link' do
             .header-nav-list__item
               profile
+    = link_to  "", class: 'tweet-btn' do
+      .tweet-btn-contents
+      tweet
+
   .top-main
-  .top-left
+    .tweet-form
+    .tweets
+      .tweet
+        .tweet-image
+        .upper-content
+          .username
+          野口
+          .time
+          12時
+        .main-content
+        今日の天気は晴れですね
+        .under-content
+        
+  .top-right
