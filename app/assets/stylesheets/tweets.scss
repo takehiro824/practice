@@ -27,6 +27,41 @@ header.top-left {
   border-right: solid 1px;
   height: 100vh; 
   width: 50%;
+  .tweets {
+    height: calc(100vh - 190px);
+    overflow: scroll;
+    padding: 46px 40px 0;
+    .tweet {
+      width: 100%;
+      .upper-tweet {
+        display: flex;
+        &__tweet-image {
+          background-color: aqua;
+          height: 80px;
+          width: 80px;
+          border-radius: 50%;
+        }
+        &__user-name {
+          padding-left: 10px;
+          font-size: 14px;
+        }
+        &__date {
+          padding-left: 10px;
+          font-size: 14px;
+        }
+        .main-tweet {
+          color: #434a54;
+          font-size: 14px;
+          margin-bottom: 10px;
+          p.main-tweet__body {
+            word-wrap: break-word;
+            overflow-wrap : break-word;
+          }
+        }
+      }
+    
+    }
+  }
 }
 
 .top-right {
