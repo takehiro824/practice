@@ -33,14 +33,19 @@ header.top-left {
     padding: 46px 40px 0;
     .tweet {
       width: 100%;
-      .upper-tweet {
+      position: absolute;
+      display: flex;
+      .user-image{
+        border-radius: 50%;
+        background-color: black;
+        height: 70px;
+        width: 70px;
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+      .upper-content {
         display: flex;
-        &__tweet-image {
-          background-color: aqua;
-          height: 80px;
-          width: 80px;
-          border-radius: 50%;
-        }
         &__user-name {
           padding-left: 10px;
           font-size: 14px;
