@@ -1,0 +1,32 @@
+.tweet-page
+  .tweet-form
+    = form_for @tweet do |f|
+      .tweet-input-box
+        = f.text_field :content, class: 'tweet-input-box__content', placeholder: 'type a message'
+        = f.label :image, class: 'tweet-input-box__image-label' do
+          = fa_icon 'picture-o', class: 'tweet-input-box__icon'
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'tweet', class: 'modal-tweet__submit-btn'
+  = link_to '戻る', root_path, class: 'top-page'
+
+.modal-dialog{:role => "document"}
+  .modal-content
+    = form_with(model: @tweet, local: true) do |form|
+      - if @tweet.errors.any?
+        #error_explanation
+          %h2
+            = pluralize(@tweet.errors.count, "error")
+            prohibited this user from being saved:
+          %ul
+            - @tweet.errors.full_messages.each do |message|
+              %li= message
+      .modal-header
+        %h5.modal-title New Tweet
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        .form-group.field
+          = form.label :name , class: "form-control-label"
+          = form.text_field :name, class: "form-control"
+      .modal-footer.actions
+        = form.submit class: "btn btn-primary"

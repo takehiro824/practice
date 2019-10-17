@@ -1,0 +1,50 @@
+.top-page
+  %header.top-left
+    .header-nav
+      %ul.header-nav-lists
+        %li.header-nav-list
+          = link_to  "", class: 'information-link' do
+            .header-nav-list__item
+              Home
+    .header-nav
+      %ul.header-nav-lists
+        %li.header-nav-list
+          = link_to  "", class: 'information-link' do
+            .header-nav-list__item
+              notification
+    .header-nav
+      %ul.header-nav-lists
+        %li.header-nav-list
+          = link_to  "", class: 'information-link' do
+            .header-nav-list__item
+              message
+    .header-nav
+      %ul.header-nav-lists
+        %li.header-nav-list
+          = link_to  "", class: 'information-link' do
+            .header-nav-list__item
+              bookmark
+    .header-nav
+      %ul.header-nav-lists
+        %li.header-nav-list
+          = link_to  "", class: 'information-link' do
+            .header-nav-list__item
+              profile
+      = link_to 'tweet', new_tweet_path, remote: true, class: 'tweet-btn' 
+      #tweet-modal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+      -# .tweet-btn-contents
+      -# tweet
+
+  .top-main
+    .top-main-form
+      = form_for @tweet do |f|
+        .top-main-input-box
+          = f.text_area :content, class: 'top-main-input-box__content', placeholder: 'type a message'
+          = f.label :image, class: 'top-main-input-box__image-label' do
+            = fa_icon 'picture-o', class: 'top-main-input-box__icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'tweet', class: 'top-new-tweet__submit-btn'
+    .tweets
+      = render partial: 'shared/tweet', collection: @tweets
+
+  .top-right
