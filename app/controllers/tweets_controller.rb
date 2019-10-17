@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   def index 
-    @tweets = Tweet.all
+    @tweets = Tweet.all.order(created_at: :desc)
+    @tweet = Tweet.new
   end
 
   def new
@@ -9,10 +10,16 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = Tweet.new(tweet_params)
-    if @tweet.save
-      redirect_to root_path
-    else
-      render :new
+    respond_to do |format|
+      if @tweet.save
+        format.html { redirect_to root_path, notice: 'User was successfully created.' }
+        format.json { redirect_to root_path, status: :created, location: @tweet }
+        format.js { @status = "success"}
+      else
+        format.html { redirect_to root_path}
+        format.json { render json: @tweet.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
+      end
     end
   end
 

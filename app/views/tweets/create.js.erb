@@ -1,0 +1,6 @@
+<% if @status == 'success' %>
+$(".tweets").prepend("<%= j(render("shared/tweet", tweet: @tweet)) %>");
+<%  elsif @status == 'fail' %>
+alert('error!');
+<% end %>
+$("#tweet-modal").modal("hide");

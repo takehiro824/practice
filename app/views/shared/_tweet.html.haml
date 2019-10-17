@@ -1,19 +1,30 @@
-.tweets
-  .tweet
-    .user-image
+.tweet{"data-tweet-id": "#{tweet.id}"}
+  .user-image
+  .tweet-content
     .upper-content
       .upper-content__username
         = current_user.name
       .upper-content__tweet-date
         = tweet.created_at.strftime("%Y/%m/%d %H:%M")
-      = link_to tweet_path(tweet.id), id: "modal-close-btn-delete", method: :delete do
+      %button#modal-open-btn 
         = fa_icon "arrow-down", class: "upper-content__arrow-down-btn"
+      #overlay
+        #modalWindow
+          .modal-message-box
+            %div 確認
+            %div 本当に削除しますか？
+          .modal-message-bottom
+            %button#modal-close-btn キャンセル
+            = link_to tweet_path(tweet.id), id: "modal-close-btn-delete", method: :delete do
+              %button#delete-comformation-btn 削除する
+
     .main-content
       - if tweet.content.present?
         %p.main-contnet__content
           = tweet.content
       = image_tag tweet.image.url, class: 'main-content__image' if tweet.image.present?
     .under-content
+      = fa_icon "comment-o", class: "under-content__comment-btn"
       = fa_icon "heart", class: "under-content__like-btn"
-      = fa_icon "retweet", class: "under-content__like-btn"
+      = fa_icon "retweet", class: "under-content__retweet-btn"
       
