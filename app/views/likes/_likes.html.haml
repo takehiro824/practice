@@ -1,0 +1,13 @@
+%div.like-link{id: "like-link-#{tweet.id}"}
+  - if current_user.likes.find_by(tweet_id: tweet.id)
+    = link_to tweet_likes_path(tweet.id), method: :delete, remote: true do
+      .glyphicon.glyphicon-heart{id: "heart-#{tweet.id}"}
+        = fa_icon "heart", class: "item-box__btn--left--like--font"
+        %span 
+          = tweet.likes.count.to_s
+  - else
+    = link_to tweet_likes_path(tweet.id), method: :post, remote: true do
+      .glyphicon.glyphicon-heart-empty{id: "heart-#{tweet.id}"}
+        = fa_icon "heart", class: "item-box__btn--left--like--font"
+        %span 
+          = tweet.likes.count.to_s

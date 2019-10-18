@@ -25,6 +25,6 @@
       = image_tag tweet.image.url, class: 'main-content__image' if tweet.image.present?
     .under-content
       = fa_icon "comment-o", class: "under-content__comment-btn"
-      = fa_icon "heart", class: "under-content__like-btn"
+      = render 'likes/likes', tweet: tweet
       = fa_icon "retweet", class: "under-content__retweet-btn"
       

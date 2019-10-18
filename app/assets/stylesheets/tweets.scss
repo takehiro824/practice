@@ -117,13 +117,14 @@ header.top-left {
         }
         .under-content {
           padding-left: 10px;
-          &__comment-btn {
+          display: flex;
+          .under-content__comment-btn {
 
           }
-          &__like-btn {
+          .like-link {
             padding-left: 30px;
           }
-          &__retweet-btn {
+          .under-content__retweet-btn {
             padding-left: 30px;
           }
         }
