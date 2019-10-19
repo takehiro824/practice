@@ -1,0 +1,54 @@
+.top-page
+  .top-main
+    .tweets
+      .tweet{"data-tweet-id": "#{@tweet.id}"}
+        .user-image
+        .tweet-content
+          .upper-content
+            .upper-content__username
+              = current_user.name
+            .upper-content__tweet-date
+              = @tweet.created_at.strftime("%Y/%m/%d %H:%M")
+            %button#modal-open-btn 
+              = fa_icon "arrow-down", class: "upper-content__arrow-down-btn"
+            #overlay
+              #modalWindow
+                .modal-message-box
+                  %div 確認
+                  %div 本当に削除しますか？
+                .modal-message-bottom
+                  %button#modal-close-btn キャンセル
+                  = link_to tweet_path(@tweet.id), id: "modal-close-btn-delete", method: :delete do
+                    %button#delete-comformation-btn 削除する
+          .main-content
+            - if @tweet.content.present?
+              %p.main-contnet__content
+                = @tweet.content
+            = image_tag @tweet.image.url, class: 'main-content__image' if @tweet.image.present?
+          .under-content
+            = fa_icon "comment-o", class: "under-content__comment-btn"
+            = render 'likes/likes', tweet: @tweet
+            = fa_icon "retweet", class: "under-content__retweet-btn"
+
+    - @tweet.comments.each do |comment|
+      .tweet-comments
+        .tweet-comment
+          .commtent-user-image
+          .comment-content
+            .upper-content
+              .upper-content__username
+                = comment.user.name
+              .upper-content__tweet-date
+                = comment.created_at.strftime("%Y/%m/%d %H:%M")
+          .main-content
+          - if comment.text.present?
+            %p.main-contnet__content
+              = comment.text
+            = image_tag  comment.image.url, class: 'main-content__image' if comment.image.present?
+    .comments-form
+    = form_for [@tweet,@comment], html: {class: "item-message__container__content__form"} do |f|
+      = f.text_area :text
+      = f.label :image, class: 'top-main-input-box__image-label' do
+        = fa_icon 'picture-o', class: 'top-main-input-box__icon'
+        = f.file_field :image, class: 'hidden'
+      = f.submit 'コメントする', class: "item-message__container__content__form__submit-btn"
