@@ -131,40 +131,6 @@ header.top-left {
       }
     }
   }
-  .tweet-comments {
-    overflow: scroll;
-    width: 100%;
-    height: 30px;
-    .tweet-comment {
-      border-bottom: solid 1px;
-      display: flex;
-      padding-bottom: 40px;
-      width: 100%;
-      padding: 10px 40px 10px;
-      .commtent-user-image {
-  
-      }
-      .comment-content {
-        .upper-content {
-
-          &__username {
-    
-          }
-          &__tweet-date {
-    
-          }
-        }
-      }
-      .main-content{
-        p.main-contnet__content {
-  
-        }
-        .main-content__image {
-  
-        }
-      }
-    }
-  }
 }
 
 .top-right {
